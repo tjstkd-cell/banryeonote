@@ -347,7 +347,7 @@ def load_done():
 def save_done(done):
     os.makedirs(os.path.dirname(STATE), exist_ok=True)
     cutoff = (datetime.now(KST) - timedelta(days=90)).strftime("%Y-%m-%d")
-    done = {k: v for k, v in done.items() if v >= cutoff}
+    done = {k: v for k, v in done.items() if v >= cutoff or k.startswith("guide:")}  # 정보글 기록은 영구 보관
     with open(STATE, "w", encoding="utf-8") as f:
         json.dump(done, f, ensure_ascii=False, indent=0)
 
