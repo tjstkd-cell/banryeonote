@@ -30,6 +30,15 @@ jobs:
           BLOG_ID: ${{ secrets.BLOG_ID }}
           PYTHONIOENCODING: utf-8
         run: python publish.py --count 2
+      - name: guide post
+        if: always()
+        env:
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          BLOG_ID: ${{ secrets.BLOG_ID }}
+          PYTHONIOENCODING: utf-8
+        run: python guides.py --count 1
       - name: save state
         if: always()
         run: |
